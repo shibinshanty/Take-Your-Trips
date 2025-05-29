@@ -72,7 +72,7 @@ exports.signup = async (req, res) => {
         });
       });
 
-    //  Set email in cookie (1 day expiry)
+   
     const cookieOptions = {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",

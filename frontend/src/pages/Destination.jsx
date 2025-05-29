@@ -54,7 +54,7 @@ const handleBooking = async () => {
       }
     );
 
-    const { bookingId, orderId, amount, currency, key } = response.data;
+    const { orderId, amount, currency, key } = response.data;
 
     // Step 2: Open Razorpay checkout
     const options = {
