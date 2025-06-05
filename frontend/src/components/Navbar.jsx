@@ -10,7 +10,7 @@ function Navbar() {
   useEffect(() => {
     const token = localStorage.getItem('token');
     setIsLoggedIn(!!token);
-  }, []); //  Only run once on mount
+  },); //  Only run once on mount
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -67,5 +67,6 @@ function Navbar() {
 }
 
 export default Navbar;
+
 
 
