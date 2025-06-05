@@ -12,7 +12,7 @@ function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/contact', formData);
+      const res = await axios.post('https://take-your-trips.onrender.com/api/contact', formData);
       setStatus(res.data.message);
       setFormData({ name: '', email: '', message: '' });
     } catch (err) {
