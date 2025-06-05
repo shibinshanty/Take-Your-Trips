@@ -37,7 +37,7 @@ const SignUp = () => {
     const formData = { name, email, password };
   
     try {
-      const response = await axios.post('https://take-your-trips.onrender.comapi/users/signup', formData);
+      const response = await axios.post('https://take-your-trips.onrender.com/api/users/signup', formData);
       setMessage(response.data.message);
       setErrorMessage("");
       Cookies.set('email', formData.email); // make sure cookie is set
