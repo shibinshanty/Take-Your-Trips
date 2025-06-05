@@ -27,7 +27,7 @@ const Otp = () => {
 
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/users/verifyotp',
+        'https://take-your-trips.onrender.com/api/users/verifyotp',
         {
           otp: enteredOtp,
           email: email,
