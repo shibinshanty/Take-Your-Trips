@@ -8,7 +8,7 @@ function Dashboard() {
 useEffect(() => {
   async function fetchBookings() {
     try {
-      const response = await axios.get('http://localhost:5000/api/bookings', {
+      const response = await axios.get('https://take-your-trips.onrender.com/api/bookings', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
