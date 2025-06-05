@@ -7,7 +7,7 @@ function Home() {
   const [destinations, setDestinations] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/destinations')
+    axios.get('https://take-your-trips.onrender.com/api/destinations')
       .then(response => {
         setDestinations(response.data);
       })
