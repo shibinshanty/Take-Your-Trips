@@ -30,7 +30,7 @@ function Home() {
         {destinations.map((dest) => (
              <div
              key={dest._id} onClick={() => handleBoxClick(dest._id)}  className="cursor-pointer bg-white shadow-2xl rounded-2xl overflow-hidden w-64 transition-transform transform hover:scale-105 hover:shadow-blue-300">
-              <img src={`http://localhost:5000/${dest.image}`} alt={dest.name} className="w-full h-44 object-cover"/>
+             <img src={dest.image.startsWith('http') ? dest.image : `https://take-your-trips.onrender.com${dest.image}`} alt={dest.name} className="w-full h-44 object-cover"/>
                <div className="p-4 text-center space-y-2">
                 <h2 className="text-xl font-semibold text-gray-800">{dest.name}</h2>
                    <p className="text-base text-green-600 font-medium">₹{dest.price}</p>
