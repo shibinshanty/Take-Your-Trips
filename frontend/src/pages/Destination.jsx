@@ -8,62 +8,40 @@ function Destination() {
   const [destination, setDestination] = useState(null);
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+  const [imageError, setImageError] = useState(false);
 
-  // Fetch destination details
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (!token) {
-      navigate('/login');
-      return;
-    }
+    if (!token) return navigate('/login');
 
     axios
       .get(`https://take-your-trips.onrender.com/api/destinations/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
         setDestination(res.data);
       })
       .catch((err) => {
-        console.error('Error fetching destination details:', err);
+        console.error('Error fetching destination:', err);
+        alert('Failed to load destination. Please try again.');
       });
   }, [id, navigate]);
 
-  // Handle Booking and Payment
   const handleBooking = async () => {
-    if (!startDate || !endDate) {
-      alert('Please select both start and end dates.');
-      return;
-    }
+    if (!startDate || !endDate) return alert('Please select both start and end dates.');
+    if (endDate < startDate) return alert('End date cannot be before start date.');
 
-    if (endDate < startDate) {
-      alert('End date cannot be before start date.');
-      return;
-    }
+    const token = localStorage.getItem('token');
 
     try {
-      const token = localStorage.getItem('token');
-
-      // Step 1: Create booking and get Razorpay order details
       const response = await axios.post(
         'https://take-your-trips.onrender.com/api/bookings',
-        {
-          destinationId: destination._id,
-          startDate,
-          endDate,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        { destinationId: destination._id, startDate, endDate },
+        { headers: { Authorization: `Bearer ${token}` } }
       );
 
       const { orderId, amount, currency, key } = response.data;
 
-      // Step 2: Open Razorpay checkout
       const options = {
         key,
         amount: amount.toString(),
@@ -71,55 +49,49 @@ function Destination() {
         name: 'Take Your Trip',
         description: 'Booking Payment',
         order_id: orderId,
-        handler: async function (paymentResponse) {
+        handler: async (paymentResponse) => {
           const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = paymentResponse;
 
           try {
             await axios.post(
               'https://take-your-trips.onrender.com/api/verify-payment',
-              {
-                razorpay_order_id,
-                razorpay_payment_id,
-                razorpay_signature,
-              },
-              {
-                headers: {
-                  Authorization: `Bearer ${token}`,
-                },
-              }
+              { razorpay_order_id, razorpay_payment_id, razorpay_signature },
+              { headers: { Authorization: `Bearer ${token}` } }
             );
 
             alert('Payment verified! Booking confirmed.');
             navigate('/dashboard');
-          } catch (verifyErr) {
-            console.error('Payment verification failed:', verifyErr);
-            alert('Payment successful but verification failed. Contact support.');
+          } catch (err) {
+            console.error('Verification failed:', err);
+            alert('Payment done, but verification failed. Please contact support.');
           }
         },
-        theme: {
-          color: '#3399cc',
-        },
+        theme: { color: '#3399cc' },
       };
 
-      const razorpay = new window.Razorpay(options);
-      razorpay.open();
+      new window.Razorpay(options).open();
     } catch (error) {
-      console.error('Booking or payment initiation failed:', error.response?.data || error.message);
+      console.error('Booking error:', error.response?.data || error.message);
       alert('Booking failed. Please try again.');
     }
   };
 
-  if (!destination) {
-    return <p className="text-center mt-20 text-xl text-gray-700">Loading...</p>;
-  }
+  if (!destination) return <p className="text-center mt-20 text-xl">Loading...</p>;
+
+  const imageURL = destination.image?.startsWith('/uploads')
+    ? `https://take-your-trips.onrender.com${destination.image}`
+    : destination.image;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-cyan-100 py-12 px-4 flex flex-col items-center">
-      <h1 className="text-5xl font-bold text-blue-800 mb-14 drop-shadow-md">Welcome to Take Your Trip</h1>
+      <h1 className="text-5xl font-bold text-blue-800 mb-14 drop-shadow-md">
+        Welcome to Take Your Trip
+      </h1>
 
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full overflow-hidden">
         <img
-          src={`https://take-your-trips.onrender.com${destination.image}`}
+          src={imageError ? '/fallback.jpg' : imageURL}
+          onError={() => setImageError(true)}
           alt={destination.name}
           className="w-full h-60 object-cover"
         />
