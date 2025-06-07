@@ -4,7 +4,7 @@ const Destination = require('../models/destination');
 exports.addDestination = async (req, res) => {
   try {
     const { name, description, price, location } = req.body;
-    const image = req.file ? req.file.path : null; // multer saves file path here
+     const image = req.file ? `https://take-your-trips.onrender.com/uploads/${req.file.filename}` : null; // multer saves file path here
     const newDestination = new Destination({ name, description, price, location, image });
     await newDestination.save();
     res.status(201).json({ message: "Destination added successfully!", destination: newDestination });
