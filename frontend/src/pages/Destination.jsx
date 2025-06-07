@@ -118,11 +118,8 @@ const handleBooking = async () => {
     </h1>
 
     <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full overflow-hidden">
-      <img
-        src={`http://localhost:5000/${destination.image}`}
-        alt={destination.name}
-        className="w-full h-72 object-cover"
-      />
+    <img src={`https://take-your-trips.onrender.com${dest.image}`} alt={dest.name} className="w-full h-44 object-cover"/>
+
       <div className="p-6 space-y-4">
         <h1 className="text-3xl font-bold text-blue-700">{destination.name}</h1>
         <p className="text-lg text-gray-700">{destination.description}</p>
