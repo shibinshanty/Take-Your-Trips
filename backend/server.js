@@ -36,7 +36,11 @@ app.use('/api',contactRoute);
 
 
 //middlware
-app.use(cors())
+app.use(cors({
+  origin: 'https://take-your-trips-frontend.onrender.com',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
 app.use(express.json())
 
 const PORT=process.env.PORT || 5000
