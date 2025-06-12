@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
-const BASE_URL=import.meta.env.VITE_BACKEND_URL;
+
 
 const Otp = () => {
   const [errorMessage, setErrorMessage] = useState('');
@@ -29,7 +29,7 @@ const Otp = () => {
     try {
       const response = await axios.post(
 
-        `${BASE_URL}/api/users/verifyotp`,
+        "https://take-your-trips.onrender.com/api/users/verifyotp",
 
         {
           otp: enteredOtp,

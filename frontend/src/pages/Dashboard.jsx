@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-const BASE_URL=import.meta.env.VITE_BACKEND_URL;
+
 
 function Dashboard() {
   const [bookings, setBookings] = useState([]);
@@ -10,7 +10,7 @@ useEffect(() => {
   async function fetchBookings() {
     try {
 
-      const response = await axios.get(`${BASE_URL}/api/bookings`, {
+      const response = await axios.get("https://take-your-trips.onrender.com/api/bookings", {
 
         headers: {
           Authorization: `Bearer ${token}`,

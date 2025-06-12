@@ -2,7 +2,7 @@ import  { useRef, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import axios from "axios";
-const BASE_URL=import.meta.env.VITE_BACKEND_URL;
+
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -39,7 +39,7 @@ const SignUp = () => {
   
     try {
 
-      const response = await axios.post(`${BASE_URL}/api/users/signup`, formData);
+      const response = await axios.post("https://take-your-trips.onrender.com/api/users/signup", formData);
 
       setMessage(response.data.message);
       setErrorMessage("");
