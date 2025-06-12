@@ -10,7 +10,7 @@ const adminRoute=require('./routes/adminRoute')
 const destinationRoutes = require('./routes/destinationRoute');
 const bookingRoute = require('./routes/bookingRoute');
 const contactRoute=require('./routes/contactRoute')
-
+const uploadRoute=require('./routes/uploadRoute')
 //middlware
 app.use(cors())
 app.use(express.json())
@@ -23,7 +23,7 @@ app.get('/',(req,res)=>{
     res.send("hello developer");
 })
 
-app.use('/uploads', express.static('uploads'));
+app.use('/api/upload',uploadRoute)
 
 app.use('/api/users',userRoute)
 

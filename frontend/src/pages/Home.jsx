@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+const BASE_URL=import.meta.env.BACKEND_URL;
 
 function Home() {
   const navigate = useNavigate();
   const [destinations, setDestinations] = useState([]);
 
   useEffect(() => {
+<<<<<<< HEAD
     axios.get('https://take-your-trips.onrender.com/api/destinations')
+=======
+    axios.get(`${BASE_URL}/api/destinations`)
+>>>>>>> f1ce6e9 (Integrated Cloudinary with multer for image uploads and updated frontend routes)
       .then(response => {
         setDestinations(response.data);
       })
@@ -30,7 +35,11 @@ function Home() {
         {destinations.map((dest) => (
              <div
              key={dest._id} onClick={() => handleBoxClick(dest._id)}  className="cursor-pointer bg-white shadow-2xl rounded-2xl overflow-hidden w-64 transition-transform transform hover:scale-105 hover:shadow-blue-300">
+<<<<<<< HEAD
              <img src={dest.image.startsWith('http') ? dest.image : `https://take-your-trips.onrender.com${dest.image}`} alt={dest.name} className="w-full h-44 object-cover"/>
+=======
+              <img src={`${BASE_URL}/${dest.image}`} alt={dest.name} className="w-full h-44 object-cover"/>
+>>>>>>> f1ce6e9 (Integrated Cloudinary with multer for image uploads and updated frontend routes)
                <div className="p-4 text-center space-y-2">
                 <h2 className="text-xl font-semibold text-gray-800">{dest.name}</h2>
                    <p className="text-base text-green-600 font-medium">₹{dest.price}</p>

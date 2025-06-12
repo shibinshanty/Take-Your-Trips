@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+const BASE_URL=import.meta.env.BACKEND_URL;
 
 function Destination() {
   const { id } = useParams();
@@ -12,12 +13,20 @@ function Destination() {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
+<<<<<<< HEAD
     if (!token) return navigate('/login');
 
     axios
       .get(`https://take-your-trips.onrender.com/api/destinations/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
+=======
+    axios.get(`${BASE_URL}/api/destinations/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+>>>>>>> f1ce6e9 (Integrated Cloudinary with multer for image uploads and updated frontend routes)
       .then((res) => {
         setDestination(res.data);
       })
@@ -33,12 +42,29 @@ function Destination() {
 
     const token = localStorage.getItem('token');
 
+<<<<<<< HEAD
     try {
       const response = await axios.post(
         'https://take-your-trips.onrender.com/api/bookings',
         { destinationId: destination._id, startDate, endDate },
         { headers: { Authorization: `Bearer ${token}` } }
       );
+=======
+    // Step 1: Create booking and Razorpay order
+    const response = await axios.post(
+      `${BASE_URL}/api/bookings`,
+      {
+        destinationId: destination._id,
+        startDate,
+        endDate
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    );
+>>>>>>> f1ce6e9 (Integrated Cloudinary with multer for image uploads and updated frontend routes)
 
       const { orderId, amount, currency, key } = response.data;
 
@@ -52,12 +78,29 @@ function Destination() {
         handler: async (paymentResponse) => {
           const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = paymentResponse;
 
+<<<<<<< HEAD
           try {
             await axios.post(
               'https://take-your-trips.onrender.com/api/verify-payment',
               { razorpay_order_id, razorpay_payment_id, razorpay_signature },
               { headers: { Authorization: `Bearer ${token}` } }
             );
+=======
+        try {
+          await axios.post(
+            `${BASE_URL}/api/verify-payment`,
+            {
+              razorpay_order_id,
+              razorpay_payment_id,
+              razorpay_signature
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            }
+          );
+>>>>>>> f1ce6e9 (Integrated Cloudinary with multer for image uploads and updated frontend routes)
 
             alert('Payment verified! Booking confirmed.');
             navigate('/dashboard');
@@ -88,6 +131,7 @@ function Destination() {
         Welcome to Take Your Trip
       </h1>
 
+<<<<<<< HEAD
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full overflow-hidden">
         <img
           src={imageError ? '/fallback.jpg' : imageURL}
@@ -95,6 +139,18 @@ function Destination() {
           alt={destination.name}
           className="w-full h-60 object-cover"
         />
+=======
+    <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full overflow-hidden">
+      <img
+        src={`${BASE_URL}/${destination.image}`}
+        alt={destination.name}
+        className="w-full h-72 object-cover"
+      />
+      <div className="p-6 space-y-4">
+        <h1 className="text-3xl font-bold text-blue-700">{destination.name}</h1>
+        <p className="text-lg text-gray-700">{destination.description}</p>
+        <p className="text-2xl text-green-600 font-semibold">₹{destination.price}</p>
+>>>>>>> f1ce6e9 (Integrated Cloudinary with multer for image uploads and updated frontend routes)
 
         <div className="p-6 space-y-4">
           <h2 className="text-3xl font-bold text-blue-700">{destination.name}</h2>

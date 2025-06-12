@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import Cookies from "js-cookie";
+const BASE_URL=import.meta.env.BACKEND_URL;
 
 const Login = () => {
   const navigate = useNavigate();
@@ -21,7 +22,11 @@ const Login = () => {
     }
 
     try {
+<<<<<<< HEAD
       const response = await axios.post('https://take-your-trips.onrender.com/api/users/login', { email, password });
+=======
+      const response = await axios.post(`${BASE_URL}/api/users/login`, { email, password });
+>>>>>>> f1ce6e9 (Integrated Cloudinary with multer for image uploads and updated frontend routes)
       setMessage(response.data.message || "Login successful!");
       setErrorMessage("");
 

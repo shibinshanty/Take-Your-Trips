@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+const BASE_URL=import.meta.env.BACKEND_URL;
 
 function Dashboard() {
   const [bookings, setBookings] = useState([]);
@@ -8,7 +9,11 @@ function Dashboard() {
 useEffect(() => {
   async function fetchBookings() {
     try {
+<<<<<<< HEAD
       const response = await axios.get('https://take-your-trips.onrender.com/api/bookings', {
+=======
+      const response = await axios.get(`${BASE_URL}/api/bookings`, {
+>>>>>>> f1ce6e9 (Integrated Cloudinary with multer for image uploads and updated frontend routes)
         headers: {
           Authorization: `Bearer ${token}`,
         },

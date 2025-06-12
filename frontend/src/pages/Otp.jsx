@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+const BASE_URL=import.meta.env.BACKEND_URL;
 
 const Otp = () => {
   const [errorMessage, setErrorMessage] = useState('');
@@ -27,7 +28,11 @@ const Otp = () => {
 
     try {
       const response = await axios.post(
+<<<<<<< HEAD
         'https://take-your-trips.onrender.com/api/users/verifyotp',
+=======
+        `${BASE_URL}/api/users/verifyotp`,
+>>>>>>> f1ce6e9 (Integrated Cloudinary with multer for image uploads and updated frontend routes)
         {
           otp: enteredOtp,
           email: email,
