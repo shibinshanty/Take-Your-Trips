@@ -12,7 +12,7 @@ function Destination() {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    axios.get("https://take-your-trips.onrender.com/api/destinations/${id}", {
+    axios.get(`https://take-your-trips.onrender.com/api/destinations/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
