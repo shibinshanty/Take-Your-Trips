@@ -23,6 +23,8 @@ function Home() {
     navigate(`/destination/${id}`);
   };
 
+   console.log(`${BASE_URL}`)
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100 to-cyan-200 flex flex-col items-center justify-start py-16 px-4">
       <h1 className="text-5xl font-bold text-blue-800 mb-14 drop-shadow-md">
