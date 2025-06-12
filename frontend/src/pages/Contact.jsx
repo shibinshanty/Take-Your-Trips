@@ -13,11 +13,7 @@ function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-<<<<<<< HEAD
       const res = await axios.post(`${BASE_URL}/api/contact`, formData);
-=======
-      const res = await axios.post(`${BASE_URL}/api/contact`, formData);
->>>>>>> f1ce6e9 (Integrated Cloudinary with multer for image uploads and updated frontend routes)
       setStatus(res.data.message);
       setFormData({ name: '', email: '', message: '' });
     } catch (err) {
