@@ -1,6 +1,6 @@
 const Destination = require('../models/destination');
 
-// Add Destination (Admin)
+
 // Add Destination (Admin)
 exports.addDestination = async (req, res) => {
   try {
