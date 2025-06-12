@@ -9,11 +9,9 @@ function Dashboard() {
 useEffect(() => {
   async function fetchBookings() {
     try {
-<<<<<<< HEAD
-      const response = await axios.get('https://take-your-trips.onrender.com/api/bookings', {
-=======
+
       const response = await axios.get(`${BASE_URL}/api/bookings`, {
->>>>>>> f1ce6e9 (Integrated Cloudinary with multer for image uploads and updated frontend routes)
+
         headers: {
           Authorization: `Bearer ${token}`,
         },

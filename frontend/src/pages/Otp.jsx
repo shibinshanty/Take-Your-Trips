@@ -28,11 +28,9 @@ const Otp = () => {
 
     try {
       const response = await axios.post(
-<<<<<<< HEAD
-        'https://take-your-trips.onrender.com/api/users/verifyotp',
-=======
+
         `${BASE_URL}/api/users/verifyotp`,
->>>>>>> f1ce6e9 (Integrated Cloudinary with multer for image uploads and updated frontend routes)
+
         {
           otp: enteredOtp,
           email: email,
