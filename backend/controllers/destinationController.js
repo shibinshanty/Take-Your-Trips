@@ -4,11 +4,20 @@ const Destination = require('../models/destination');
 // Add Destination (Admin)
 exports.addDestination = async (req, res) => {
   try {
+    console.log("Incoming Request Body:", req.body);
+    console.log("Uploaded File Info:", req.file); 
+
     const { name, description, price, location } = req.body;
 
-    const image = req.file ? req.file.path : null; // Cloudinary URL
+    const image = req.file ? req.file.path : null;
 
-    const newDestination = new Destination({ name, description, price, location, image });
+    const newDestination = new Destination({
+      name,
+      description,
+      price,
+      location,
+      image,
+    });
 
     await newDestination.save();
 
@@ -17,9 +26,14 @@ exports.addDestination = async (req, res) => {
       destination: newDestination,
     });
   } catch (error) {
-    res.status(500).json({ message: "Error adding destination", error: error.message });
+    console.error("Error in addDestination:", error); 
+    res.status(500).json({
+      message: "Error adding destination",
+      error: error.message,
+    });
   }
 };
+
 
 
 
