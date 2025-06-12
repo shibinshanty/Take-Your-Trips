@@ -8,6 +8,7 @@ function Home() {
   const [destinations, setDestinations] = useState([]);
 
   useEffect(() => {
+    console.log("BASE_URL:", BASE_URL);
 
     axios.get(`${BASE_URL}/api/destinations`)
 
@@ -23,7 +24,7 @@ function Home() {
     navigate(`/destination/${id}`);
   };
 
-   console.log(`${BASE_URL}`)
+   
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100 to-cyan-200 flex flex-col items-center justify-start py-16 px-4">
