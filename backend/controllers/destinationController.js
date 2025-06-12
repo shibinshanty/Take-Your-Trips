@@ -1,17 +1,26 @@
 const Destination = require('../models/destination');
 
 // Add Destination (Admin)
+// Add Destination (Admin)
 exports.addDestination = async (req, res) => {
   try {
     const { name, description, price, location } = req.body;
-     const image = req.file ? `https://take-your-trips.onrender.com/uploads/${req.file.filename}` : null; // multer saves file path here
+
+    const image = req.file ? req.file.path : null; // Cloudinary URL
+
     const newDestination = new Destination({ name, description, price, location, image });
+
     await newDestination.save();
-    res.status(201).json({ message: "Destination added successfully!", destination: newDestination });
+
+    res.status(201).json({
+      message: "Destination added successfully!",
+      destination: newDestination,
+    });
   } catch (error) {
     res.status(500).json({ message: "Error adding destination", error: error.message });
   }
 };
+
 
 
 // Get all Destinations (Admin)
