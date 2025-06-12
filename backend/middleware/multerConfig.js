@@ -9,7 +9,7 @@ const storage = new CloudinaryStorage({
   params: {
     folder: 'take-your-trip', // You can change this to any folder name
     allowed_formats: ['jpg', 'jpeg', 'png'], // Optional, for format restriction
-    transformation: [{ width: 800, height: 600, crop: 'limit' }] // Optional
+    
   },
 });
 
