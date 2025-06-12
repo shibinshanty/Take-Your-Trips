@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import Cookies from "js-cookie";
-const BASE_URL=import.meta.env.BACKEND_URL;
+const BASE_URL=import.meta.env.VITE_BACKEND_URL;
 
 const Login = () => {
   const navigate = useNavigate();
