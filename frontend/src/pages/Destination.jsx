@@ -9,29 +9,22 @@ function Destination() {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const navigate=useNavigate();
-  const [isLoading, setIsLoading] = useState(true);
 
- useEffect(() => {
-  const token = localStorage.getItem('token');
 
-  axios.get(`https://take-your-trips.onrender.com/api/destinations/${id}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
-    .then((res) => {
-      setDestination(res.data);
-      setIsLoading(false);
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    axios.get(`https://take-your-trips.onrender.com/api/destinations/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     })
-    .catch((err) => {
-      console.error("Error fetching destination details:", err);
-      if (err.response?.status === 401) {
-        navigate('/login');
-      } else {
-        setIsLoading(false);
-      }
-    });
-}, [id, navigate]);
+      .then((res) => {
+        setDestination(res.data);
+      })
+      .catch((err) => {
+        console.error("Error fetching destination details:", err);
+      });
+  }, [id]);
 
 const handleBooking = async () => {
   if (!startDate || !endDate) {
@@ -117,13 +110,7 @@ const handleBooking = async () => {
 
  
 
-if (isLoading) {
-  return (
-    <div className="min-h-screen flex justify-center items-center text-lg text-gray-700">
-      Loading destination...
-    </div>
-  );
-}
+if (!destination) return <p className="text-center mt-20">Loading...</p>;
   return (
   <div className="min-h-screen bg-gradient-to-br from-blue-50 to-cyan-100 py-12 px-4 flex flex-col items-center">
     <h1 className="text-5xl font-bold text-blue-800 mb-14 drop-shadow-md">
