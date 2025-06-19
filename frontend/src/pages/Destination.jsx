@@ -8,27 +8,31 @@ function Destination() {
   const [destination, setDestination] = useState(null);
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
-  const navigate=useNavigate()
+  const navigate=useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    axios.get(`https://take-your-trips.onrender.com/api/destinations/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+ useEffect(() => {
+  const token = localStorage.getItem('token');
+
+  axios.get(`https://take-your-trips.onrender.com/api/destinations/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((res) => {
+      setDestination(res.data);
+      setIsLoading(false);
     })
-      .then((res) => {
-        setDestination(res.data);
-      })
-       .catch((err) => {
-  console.error("Error fetching destination details:", err);
-  if (err.response?.status === 401) {
-    navigate('/login');
-  }
-});
+    .catch((err) => {
+      console.error("Error fetching destination details:", err);
+      if (err.response?.status === 401) {
+        navigate('/login');
+      } else {
+        setIsLoading(false);
+      }
+    });
+}, [id, navigate]);
 
-  }, [id,navigate]);
-     
 const handleBooking = async () => {
   if (!startDate || !endDate) {
     alert("Please select both start and end dates.");
@@ -113,7 +117,7 @@ const handleBooking = async () => {
 
  
 
-if (!destination) {
+if (isLoading) {
   return (
     <div className="min-h-screen flex justify-center items-center text-lg text-gray-700">
       Loading destination...
