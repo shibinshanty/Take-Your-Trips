@@ -113,8 +113,13 @@ const handleBooking = async () => {
 
  
 
-  if (!destination) return navigate("/login")
-
+if (!destination) {
+  return (
+    <div className="min-h-screen flex justify-center items-center text-lg text-gray-700">
+      Loading destination...
+    </div>
+  );
+}
   return (
   <div className="min-h-screen bg-gradient-to-br from-blue-50 to-cyan-100 py-12 px-4 flex flex-col items-center">
     <h1 className="text-5xl font-bold text-blue-800 mb-14 drop-shadow-md">
