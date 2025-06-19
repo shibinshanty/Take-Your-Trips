@@ -20,10 +20,14 @@ function Destination() {
       .then((res) => {
         setDestination(res.data);
       })
-      .catch((err) => {
-        console.error("Error fetching destination details:", err);
-      });
-  }, [id]);
+       .catch((err) => {
+  console.error("Error fetching destination details:", err);
+  if (err.response?.status === 401) {
+    navigate('/login');
+  }
+});
+
+  }, [id,navigate]);
      
 const handleBooking = async () => {
   if (!startDate || !endDate) {
