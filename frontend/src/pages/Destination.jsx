@@ -109,7 +109,7 @@ const handleBooking = async () => {
 
  
 
-  if (!destination) return <p className="text-center mt-20">Loading...</p>;
+  if (!destination) return navigate("/login")
 
   return (
   <div className="min-h-screen bg-gradient-to-br from-blue-50 to-cyan-100 py-12 px-4 flex flex-col items-center">
