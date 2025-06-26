@@ -15,6 +15,7 @@ function Home() {
 
       .then(response => {
         setDestinations(response.data);
+        console.log(destinations);
       })
       .catch(error => {
         console.error('Error fetching destinations:', error);
