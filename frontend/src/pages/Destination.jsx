@@ -120,7 +120,7 @@ if (!destination) return <p className="text-center mt-20">Loading...</p>;
 
     <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full overflow-hidden">
        <img
-        src={`${BASE_URL}/${destination.image}`}
+        src={`https://res.cloudinary.com/dtleeb3fr/image/upload/${destination.image}`}
         alt={destination.name}
         className="w-full h-72 object-cover"
       />
