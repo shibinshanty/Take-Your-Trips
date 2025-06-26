@@ -119,8 +119,8 @@ if (!destination) return <p className="text-center mt-20">Loading...</p>;
     </h1>
 
     <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full overflow-hidden">
-      <img
-        src={destination.image}
+       <img
+        src={`${BASE_URL}/${destination.image}`}
         alt={destination.name}
         className="w-full h-72 object-cover"
       />
