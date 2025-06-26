@@ -8,15 +8,14 @@ const Shimmer = () => {
         .map((_, index) => (
           <div
             key={index}
-            className="w-64 bg-white rounded-2xl shadow-2xl overflow-hidden animate-pulse"
+            className="bg-white shadow-2xl rounded-2xl overflow-hidden w-full max-w-xs mx-auto animate-pulse"
           >
           
             <div className="h-44 bg-gray-300 w-full"></div>
 
-          
             <div className="p-4 space-y-3">
-              <div className="h-4 bg-gray-300 rounded w-3/4"></div>
-              <div className="h-4 bg-gray-300 rounded w-1/2"></div>
+              <div className="h-5 bg-gray-300 rounded w-3/4 mx-auto"></div>
+              <div className="h-4 bg-gray-300 rounded w-1/2 mx-auto"></div>
             </div>
           </div>
         ))}
@@ -25,3 +24,4 @@ const Shimmer = () => {
 };
 
 export default Shimmer;
+
