@@ -42,7 +42,7 @@ function Home() {
              <div
              key={dest._id} onClick={() => handleBoxClick(dest._id)}  className="cursor-pointer bg-white shadow-2xl rounded-2xl overflow-hidden w-64 transition-transform transform hover:scale-105 hover:shadow-blue-300">
 
-            <img src={`https://res.cloudinary.com/dtleeb3fr/image/upload/${dest.image}`} alt={dest.name} className="w-full h-44 object-cover"/>
+            <img src={dest.image} alt={dest.name} className="w-full h-44 object-cover"/>
 
                <div className="p-4 text-center space-y-2">
                 <h2 className="text-xl font-semibold text-gray-800">{dest.name}</h2>
