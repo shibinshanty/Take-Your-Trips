@@ -36,7 +36,7 @@ function Home() {
       </h1>
        
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10">
-        {destinations.length==0?(
+        {destinations.length===0?(
           <Shimmer/>):( 
         
 
@@ -44,7 +44,7 @@ function Home() {
              <div
              key={dest._id} onClick={() => handleBoxClick(dest._id)}  className="cursor-pointer bg-white shadow-2xl rounded-2xl overflow-hidden w-64 transition-transform transform hover:scale-105 hover:shadow-blue-300">
 
-            <img src={`${BASE_URL}/${dest.image}`}  alt={dest.name} className="w-full h-44 object-cover" />
+            <img src={dest.image}  alt={dest.name} className="w-full h-44 object-cover" />
 
                <div className="p-4 text-center space-y-2">
                 <h2 className="text-xl font-semibold text-gray-800">{dest.name}</h2>
