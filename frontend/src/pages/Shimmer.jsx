@@ -1,5 +1,4 @@
 
-
 const Shimmer = () => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10">
@@ -8,10 +7,10 @@ const Shimmer = () => {
         .map((_, index) => (
           <div
             key={index}
-            className="bg-white shadow-2xl rounded-2xl overflow-hidden w-full max-w-xs mx-auto animate-pulse"
+            className="w-64 bg-white shadow-2xl rounded-2xl overflow-hidden animate-pulse mx-auto"
           >
-          
-            <div className="h-44 bg-gray-300 w-full"></div>
+           
+            <div className="h-44 bg-gray-300 w-full rounded-t-2xl"></div>
 
             <div className="p-4 space-y-3">
               <div className="h-5 bg-gray-300 rounded w-3/4 mx-auto"></div>
@@ -24,4 +23,5 @@ const Shimmer = () => {
 };
 
 export default Shimmer;
+
 
