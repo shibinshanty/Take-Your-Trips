@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+const BASE_URL=import.meta.env.VITE_BACKEND_URL
 
 
 function Contact() {
@@ -13,7 +14,7 @@ function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://take-your-trips.onrender.com/api/contact", formData);
+      const res = await axios.post(`${BASE_URL}/api/contact`, formData);
       setStatus(res.data.message);
       setFormData({ name: '', email: '', message: '' });
     } catch (err) {

@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import Cookies from "js-cookie";
+const BASE_URL=import.meta.env.VITE_BACKEND_URL;
 
 
 const Login = () => {
@@ -23,7 +24,7 @@ const Login = () => {
 
     try {
 
-      const response = await axios.post("https://take-your-trips.onrender.com/api/users/login", { email, password });
+      const response = await axios.post(`${BASE_URL}/api/users/login`, { email, password });
 
       setMessage(response.data.message || "Login successful!");
       setErrorMessage("");

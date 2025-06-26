@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Shimmer from './Shimmer'
+const BASE_URL=import.meta.env.VITE_BACKEND_URL;
 
 
 function Home() {
@@ -11,7 +12,7 @@ function Home() {
   useEffect(() => {
    
 
-    axios.get("https://take-your-trips.onrender.com/api/destinations")
+    axios.get(`${BASE_URL}/api/destinations`)
 
       .then(response => {
         setDestinations(response.data);
@@ -43,7 +44,7 @@ function Home() {
              <div
              key={dest._id} onClick={() => handleBoxClick(dest._id)}  className="cursor-pointer bg-white shadow-2xl rounded-2xl overflow-hidden w-64 transition-transform transform hover:scale-105 hover:shadow-blue-300">
 
-            <img src={`${dest.image}`} alt={dest.name} className="w-full h-44 object-cover" />
+            <img src={`${BASE_URL}/${dest.image}`}  alt={dest.name} className="w-full h-44 object-cover" />
 
                <div className="p-4 text-center space-y-2">
                 <h2 className="text-xl font-semibold text-gray-800">{dest.name}</h2>

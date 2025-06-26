@@ -1,6 +1,7 @@
 import { useParams,useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+const BASE_URL=import.meta.env.VITE_BACKEND_URL;
 
 
 function Destination() {
@@ -13,7 +14,7 @@ function Destination() {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    axios.get(`https://take-your-trips.onrender.com/api/destinations/${id}`, {
+    axios.get(`${BASE_URL}/api/destinations/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -42,7 +43,7 @@ const handleBooking = async () => {
 
     // Step 1: Create booking and Razorpay order
     const response = await axios.post(
-      "https://take-your-trips.onrender.com/api/bookings",
+      `${BASE_URL}/api/bookings`,
       {
         destinationId: destination._id,
         startDate,
@@ -71,7 +72,7 @@ const handleBooking = async () => {
 
         try {
           await axios.post(
-            "https://take-your-trips.onrender.com/api/verify-payment",
+          `${BASE_URL}/api/verify-payment`,
             {
               razorpay_order_id,
               razorpay_payment_id,
@@ -119,7 +120,7 @@ if (!destination) return <p className="text-center mt-20">Loading...</p>;
 
     <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full overflow-hidden">
       <img
-        src={`${destination.image}`}
+        src={`${BASE_URL}/${destination.image}`}
         alt={destination.name}
         className="w-full h-72 object-cover"
       />
